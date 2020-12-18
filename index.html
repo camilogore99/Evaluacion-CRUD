@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+      <div class="container mt-5">
+            <div class="card bg-blue">
+                  <div class="card-body">
+                        <form id="form-user" onsubmit="event.preventDefault(), addCars()" action="/users.php">
+                              <div class="form-group">
+                                    <label for="marca">Marca</label>
+                                    <input type="text" class="form-control" id="marca" placeholder="Ingresa la Marca"
+                                          required>
+                              </div>
+                              <div class="form-group">
+                                    <label for="modelo">Modelo</label>
+                                    <input type="text" class="form-control" id="modelo" placeholder="Ingresa el Modelo"
+                                          required>
+                              </div>
+                              <div class="form-group">
+                                    <label for="color">Color</label>
+                                    <input type="text" class="form-control" id="color" placeholder="Ingresa el Color"
+                                          required>
+                              </div>
+                              <div class="form-group">
+                                    <label for="año">Año</label>
+                                    <input type="text" class="form-control" id="año" placeholder="Ingresa el Año"
+                                          required>
+                              </div>
+                              <div class="form-group">
+                                    <label for="modelo">Precio</label>
+                                    <input type="text" class="form-control" id="modelo" placeholder="Ingresa el MODELO"
+                                          required>
+                              </div>
+                              <button type="submit" class="btn btn-primary">Ingresar</button>
+                        </form>
+                  </div>
+            </div>
+            <table class="table">
+                  <thead>
+                        <tr>
+                              <th>MARCA</th>
+                              <th>MODELO</th>
+                              <th>COLOR</th>
+                              <th>AÑO</th>
+                              <th>PRECIO</th>
+                        </tr>
+                  </thead>
+                  <tbody id="container-cars">
+
+                  </tbody>
+            </table>
+      </div>
+      <script src="./javascript.js"></script>
+
+
+</body>
+
+</html>
