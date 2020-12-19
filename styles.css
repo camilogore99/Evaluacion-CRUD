@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.bg-black {
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+}
+.image-mazda {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCs5AbvXvwdrjL2dKDWqie74qf3AsY4ZX5hA&usqp=CAU);
+  width: 100%;
+  height: 100%;
+}

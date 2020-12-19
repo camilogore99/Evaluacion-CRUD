@@ -48,17 +48,17 @@ function printCars() {
       let html = '';
       cars.forEach((car) =>{
             html += `<tr>
-                    <td>${car.marca}</td>
-                    <td>${car.modelo}</td>
-                    <td>${car.color}</td>
-                    <td>${car.año}</td>
-                    <td>${car.precio}</td>
-                    <td>
-                        <button onclick="deleteCars(${car.id})" class="btn btn-danger">
-                            Eliminar
-                        </button>
-                    </td>
-                </tr>`;
+                                  <td>${car.marca}</td>
+                                  <td>${car.modelo}</td>
+                                  <td>${car.color}</td>
+                                  <td>${car.año}</td>
+                                  <td>${car.precio}</td>
+                                  <td>
+                                   <button onclick="deleteCars(${car.id})" class="btn btn-danger">
+                                           Eliminar
+                                   </button>
+                                   </td>
+                          </tr>`;
       });
       console.log(cars)
       container.innerHTML = html;
@@ -66,37 +66,47 @@ function printCars() {
 
 function deleteCars(id){
       // Como elimino un valor de un arreglo? 1. pop -> shift -> splice
-    // necesito el índice -> ¿cómo obtengo el índice del elemento si lo que yo recibo es el id? -> findIndex
+      // necesito el índice -> ¿cómo obtengo el índice del elemento si lo que yo recibo   es el id? -> findIndex
+    alert(`se va eliminar el carro ${id}`)
     const index = cars.findIndex((car) =>car.id == id);
     cars.splice(index,1);
 
-    printcars();
+    printCars();
 }
 function addCars() {
     // obtner el valor del input
     // agregar el usuario al arreglo
     // imprimo nuevamente los usuarios
-    const modelo = document.getElementById('modelo').value;
+    const inputModelo = document.getElementById('modelo');
+    let modelo = inputModelo.value;
+
     const id = cars[cars.length -1].id + 1;
 
     const inputMarca = document.getElementById('marca');
-    const Marca = inputMarca.value;
+    let marca = inputMarca.value;
 
-    const color = document.getElementById("color");
-    
+    const inputColor = document.getElementById('color');
+    let color = inputColor.value;
+
+    const inputAño = document.getElementById('año');
+    let año = inputAño.value;
+
+    const inputPrecio = document.getElementById('precio')
+    let precio = inputPrecio.value;
+
     const newCars = {
-          id:"",
-        marca: '',
-        modelo: '',
-        color: '',
-        año: "",
-        precio: ''
-        
+        id,
+        marca,
+        modelo,
+        color,
+        año,
+        precio
     }
     cars.push(newCars);
-    printcars();
+
+    printCars();
 
     // limpiamos el formulario
-    document.getElementById('form-user').reset();
+    document.getElementById('form-cars').reset();
 }
 printCars();
