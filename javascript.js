@@ -57,6 +57,7 @@ function printCars() {
                                    <button onclick="deleteCars(${car.id})" class="btn btn-danger">
                                            Eliminar
                                    </button>
+                                   <button onclick="updateCars(${car.id})" type="button" class="btn btn-warning">actulizar</button>
                                    </td>
                           </tr>`;
       });
@@ -109,4 +110,6 @@ function addCars() {
     // limpiamos el formulario
     document.getElementById('form-cars').reset();
 }
+
+
 printCars();
