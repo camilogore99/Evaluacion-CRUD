@@ -110,6 +110,46 @@ function addCars() {
     // limpiamos el formulario
     document.getElementById('form-cars').reset();
 }
+ function updateCars(id) {
+       //necesito saber en que posicion de mi arreglo voy a actualizar
+       //agrego los valores que quiero actualizar en la posicion 
+      let identificador = id 
+      alert(`se va actualizar el carro ${identificador}`)
+      for (let i =0 ; i<cars.length; i++) {
+            if (identificador === id) {
+            const inputModelo = document.getElementById('modelo');
+            let modelo2 = inputModelo.value;
+
+            const inputMarca = document.getElementById('marca');
+            let marca2 = inputMarca.value;
+      
+            const inputColor = document.getElementById('color');
+            let color2 = inputColor.value;
+      
+            const inputAño = document.getElementById('año');
+            let año2 = inputAño.value;
+      
+            const inputPrecio = document.getElementById('precio')
+            let precio2 = inputPrecio.value;
+
+            const newCars2 = {
+            marca2,
+            modelo2,
+            color2,
+            año2,
+            precio2
+          }
+          
+          cars.splice((identificador -1),0,newCars2);
+          console.log("ya entreeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+          printCars();
+          i = cars.length
+          
+         }
+      }
+      console.log("me sali del ciclo")
+}
+
 
 
 printCars();
