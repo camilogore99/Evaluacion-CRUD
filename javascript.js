@@ -141,13 +141,11 @@ function addCars() {
           }
           
           cars.splice((identificador -1),0,newCars2);
-          console.log("ya entreeeeeeeeeeeeeeeeeeeeeeeeeeeee")
           printCars();
           i = cars.length
           
          }
       }
-      console.log("me sali del ciclo")
 }
 
 
