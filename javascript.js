@@ -40,6 +40,10 @@ let cars = [
         precio: '90.000.00'
     }
 ];
+
+let updating = false;
+let updatingId = -1;
+
 function printCars() {
       // 1. Obtengo el elemento html en el que quiero poner los carros
     // 2. Genero el html de los carros
@@ -57,7 +61,7 @@ function printCars() {
                                    <button onclick="deleteCars(${car.id})" class="btn btn-danger">
                                            Eliminar
                                    </button>
-                                   <button onclick="updateCars(${car.id})" type="button" class="btn btn-warning">actulizar</button>
+                                   <button onclick="enableUpdateCars(${car.id})" type="button" class="btn btn-warning">actulizar</button>
                                    </td>
                           </tr>`;
       });
@@ -75,14 +79,20 @@ function deleteCars(id){
     printCars();
 }
 function addCars() {
+      if (updating) {
+            updateCars();
+            return
+      }
     // obtner el valor del input
     // agregar el usuario al arreglo
     // imprimo nuevamente los usuarios
     const inputModelo = document.getElementById('modelo');
     let modelo = inputModelo.value;
 
-    const id = cars[cars.length -1].id + 1;
-
+    let id = 1;
+    if (cars.length > 0) {
+           id = cars[cars.length -1].id + 1;
+    }
     const inputMarca = document.getElementById('marca');
     let marca = inputMarca.value;
 
@@ -110,44 +120,54 @@ function addCars() {
     // limpiamos el formulario
     document.getElementById('form-cars').reset();
 }
- function updateCars(id) {
-       //necesito saber en que posicion de mi arreglo voy a actualizar
-       //agrego los valores que quiero actualizar en la posicion 
-      let identificador = id 
-      alert(`se va actualizar el carro ${identificador}`)
-      for (let i =0 ; i<cars.length; i++) {
-            if (identificador === id) {
-            const inputModelo = document.getElementById('modelo');
-            let modelo2 = inputModelo.value;
+ function enableUpdateCars( id ) {
+       updatingId = id;
+       const car  = cars.find((car) => car.id === id)
+       document.getElementById('marca').value = car.marca;
+       document.getElementById('modelo').value = car.modelo;
+       document.getElementById('color').value = car.color;
+       document.getElementById('año').value = car.año;
+       document.getElementById('precio').value = car.precio;
 
-            const inputMarca = document.getElementById('marca');
-            let marca2 = inputMarca.value;
-      
-            const inputColor = document.getElementById('color');
-            let color2 = inputColor.value;
-      
-            const inputAño = document.getElementById('año');
-            let año2 = inputAño.value;
-      
-            const inputPrecio = document.getElementById('precio')
-            let precio2 = inputPrecio.value;
-
-            const newCars2 = {
-            marca2,
-            modelo2,
-            color2,
-            año2,
-            precio2
-          }
-          
-          cars.splice((identificador -1),0,newCars2);
-          printCars();
-          i = cars.length
-          
-         }
-      }
+       updating = true;
+       document.getElementById('save').textContent = 'actualizar';
+      const button = document.getElementById('save');
+      button.classList.remove('btn-primary');
+      button.classList.add('btn-warning');
 }
+function updateCars() {
+      const car = cars.find((car) =>car.id === updatingId);
 
+      const inputModelo = document.getElementById('modelo');
+      let modelo = inputModelo.value;
 
+      const inputMarca = document.getElementById('marca');
+      let marca = inputMarca.value;
 
+      const inputColor = document.getElementById('color');
+      let color = inputColor.value;
+
+      const inputAño = document.getElementById('año');
+      let año = inputAño.value;
+
+      const inputPrecio = document.getElementById('precio')
+      let precio = inputPrecio.value;
+
+      car.modelo = modelo;
+      car.marca = marca;
+      car.color = color;
+      car.año = año;
+      car.precio = precio;
+
+      printCars();
+      document.getElementById('form-cars').reset();
+
+      updating = false;
+      updatingId = -1;
+
+      document.getElementById('save').textContent = 'Ingresar';
+      const button = document.getElementById('save');
+      button.classList.remove('btn-warning');
+      button.classList.add('btn-primary');
+}
 printCars();
